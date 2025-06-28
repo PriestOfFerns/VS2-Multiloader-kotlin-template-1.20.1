@@ -47,6 +47,19 @@ dependencies {
 
     // Kotlin For Forge
     implementation("thedarkcolour:kotlinforforge:${rootProject.property("kotlin_for_forge_version")}")
+
+    // Valkyrien Skies 2
+    modApi("org.valkyrienskies:valkyrienskies-120-forge:${rootProject.property("vs2_version")}")
+    implementation("org.valkyrienskies.core:api:${rootProject.property("vscore_version")}") {
+        exclude("org.joml", "")
+    }
+    implementation("org.valkyrienskies.core:impl:${rootProject.property("vscore_version")}") {
+        exclude("org.joml", "")
+    }
+    implementation("org.valkyrienskies.core:api-game:${rootProject.property("vscore_version")}") {
+        exclude("org.joml", "")
+        isTransitive = false
+    }
 }
 
 tasks.processResources {

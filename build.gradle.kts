@@ -2,9 +2,9 @@ import net.fabricmc.loom.api.LoomGradleExtensionAPI
 
 plugins {
     java
-    kotlin("jvm") version "1.8.22"
+    kotlin("jvm") version "2.0.0"
     id("architectury-plugin") version "3.4-SNAPSHOT"
-    id("dev.architectury.loom") version "1.2-SNAPSHOT" apply false
+    id("dev.architectury.loom") version "1.3.355" apply false
     id("com.github.johnrengelman.shadow") version "8.1.1" apply false
 }
 
@@ -46,6 +46,10 @@ allprojects {
         // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
         // See https://docs.gradle.org/current/userguide/declaring_repositories.html
         // for more information about repositories.
+        maven {
+            name = "Valkyrien Skies Internal"
+            url = uri("https://maven.valkyrienskies.org")
+        }
     }
 
     dependencies {

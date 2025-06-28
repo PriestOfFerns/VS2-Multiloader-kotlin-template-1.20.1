@@ -17,6 +17,8 @@ loom {
     accessWidenerPath.set(project(":common").loom.accessWidenerPath)
 }
 
+
+
 val common: Configuration by configurations.creating
 val shadowCommon: Configuration by configurations.creating
 val developmentFabric: Configuration by configurations.getting
@@ -39,15 +41,21 @@ dependencies {
     shadowCommon(project(":common", "transformProductionFabric")){
         isTransitive = false
     }
-    common(project(":fabric-like", "namedElements")){
-        isTransitive = false
-    }
-    shadowCommon(project(":fabric-like", "transformProductionFabric")) {
-        isTransitive = false
-    }
 
     // Fabric Kotlin
     modImplementation("net.fabricmc:fabric-language-kotlin:${rootProject.property("fabric_kotlin_version")}")
+
+    // Valkyrien Skies 2
+    modApi("org.valkyrienskies:valkyrienskies-120-fabric:${rootProject.property("vs2_version")}")
+    implementation("org.valkyrienskies.core:api:${rootProject.property("vscore_version")}") {
+        exclude("org.joml", "")
+    }
+    implementation("org.valkyrienskies.core:impl:${rootProject.property("vscore_version")}") {
+        exclude("org.joml", "")
+    }
+    implementation("org.valkyrienskies.core:api-game:${rootProject.property("vscore_version")}") {
+        exclude("org.joml", "")
+    }
 }
 
 tasks.processResources {
